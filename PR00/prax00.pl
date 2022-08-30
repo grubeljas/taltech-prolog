@@ -1,3 +1,3 @@
 lind(hani).
 lind(part).
-lennab(X):- lind(X).
+lendab(X):- lind(X).
