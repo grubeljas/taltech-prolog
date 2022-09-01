@@ -86,5 +86,14 @@ ancestor1(Child, Parent, N):-
     T is N - 1,
     ancestor1(P, Parent, T).
     
-ancestor2(Child, Parent, 0):-
-    ancestor(Child, Parent).
+ancestor2(Child, Parent, N):-
+    ancestor(Child,Parent),
+    count_children(Parent, N0),
+    N0 > N.
+
+count_children(Parent, N) :-
+    count_children(Parent, [], 0, N).
+
+count_children(Parent, L, N0, N) :-
+    (parent(C, Parent), \+member(C, L))
+    -> (N1 is N0+1, c
