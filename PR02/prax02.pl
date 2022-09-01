@@ -24,6 +24,8 @@ married(vanavanaema2, vanavanaisa2).
 married(vanavanaema3, vanavanaisa3).
 married(vanavanaema4, vanavanaisa4).
 
+:- discontiguous female/1.
+:- discontiguous male/1.
 male(pavel).
 male(valeri).
 female(natali).
