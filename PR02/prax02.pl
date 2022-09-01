@@ -65,17 +65,18 @@ ancestor(C, G) :-
     parent(C, Parent),
     ancestor(Parent, G). 
 
-ancestor(C, G) :- 
-    mother(C, G). 
-ancestor(C, G) :-
-    parent(C, Parent),
-    ancestor(Parent, G). 
-
-ancestor(C, G) :- 
+male_ancestor(C, G) :- 
     father(C, G). 
-ancestor(C, G) :-
+male_ancestor(C, G) :-
     parent(C, Parent),
-    ancestor(Parent, G). 
+    male_ancestor(Parent, G). 
+
+female_ancestor(Child, Parent, 1):-
+    parent(Child, Parent).
+female_ancestor(Child, Parent, N):-
+    parent(Child, P),
+    T is N - 1,
+    female_ancestor(P, Parent, T).
 
 ancestor1(Child, Parent, 1):-
     parent(Child, Parent).
