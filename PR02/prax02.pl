@@ -96,4 +96,5 @@ count_children(Parent, N) :-
 
 count_children(Parent, L, N0, N) :-
     (parent(C, Parent), \+member(C, L))
-    -> (N1 is N0+1, c
+    -> (N1 is N0+1, count_children(Parent, [C|L], N1, N))
+    ; N = N0.
