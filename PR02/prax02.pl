@@ -12,7 +12,7 @@ mother(who, nat).
 mother(silvi, vanavanaema1).
 mother(ivan, vanavanaema2).
 mother(zina, vanavanaema3).
-mother(vladimir, vanavanaema4).
+mother(vladimir, vanavanaema4). % emad
 
 married(natali, valeri).
 married(galina, sergei).
