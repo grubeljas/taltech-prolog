@@ -31,7 +31,7 @@ repeat(X,N,[X|L]):-
     repeat(X,N0,L).
 
 kordista([_],0,[]).
-kordista(L,1,L).
+kordista([L|],1,[L]).
 kordista([],_,[]).
 kordista([X|TAIL],N,LIST):-
     repeat(X,N,ML),
