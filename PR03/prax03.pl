@@ -14,7 +14,7 @@ suurim([X,Y|TAIL], [B|L]):-
 paki([], []).
 paki([X,X|[]], [X]).
 paki([X|[]], [X]).
-paki([X,X|TAIL], [X|L]):-
-    paki(TAIL, L).
+paki([X,X|TAIL], L):-
+    paki([X|TAIL], L).
 paki([X,Y|TAIL], [X|L]):-
-    paki([Y|TAIL], [Y|L]).
+    paki([Y|TAIL], L).
