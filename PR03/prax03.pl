@@ -52,10 +52,10 @@ paaritu_arv([EL|TAIL],X):-
 paaris_arv([],[]).
 paaris_arv([EL|TAIL],[EL|X]):-
     even(EL),
-    paaritu_arv(TAIL,X).
+    paaris_arv(TAIL,X).
 paaris_arv([EL|TAIL],X):-
     odd(EL),
-    paaritu_arv(TAIL,X).
+    paaris_arv(TAIL,X).
 
 suurem_kui([],_,[]).
 suurem_kui([EL|TAIL],N,[EL|X]):-
