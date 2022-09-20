@@ -18,3 +18,8 @@ paki([X,X|TAIL], L):-
     paki([X|TAIL], L).
 paki([X,Y|TAIL], [X|L]):-
     paki([Y|TAIL], L).
+
+duplikeeri([],[]).
+duplikeeri([X|[]],[X,X]).
+duplikeeri([X|TAIL],[X,X|L]):-
+    duplikeeri(TAIL,L).
