@@ -24,7 +24,7 @@ duplikeeri([X|[]],[X,X]).
 duplikeeri([X|TAIL],[X,X|L]):-
     duplikeeri(TAIL,L).
 
-repeat(X,0,[]).
+repeat(_,0,[]).
 repeat(X,1,[X]).
 repeat(X,N,[X|L]):-
     N0 is N - 1,
@@ -32,7 +32,8 @@ repeat(X,N,[X|L]):-
 
 kordista([_],0,[]).
 kordista(L,1,L).
-kordista([],N,[]).
-kordista([X|TAIL],N,[ML|L]):-
+kordista([],_,[]).
+kordista([X|TAIL],N,LIST):-
     repeat(X,N,ML),
-    kordista(TAIL,N,L).
+    kordista(TAIL,N,L),
+    append(ML,L,LIST).
