@@ -9,3 +9,14 @@ lennukiga(helsinki, paris, 180).
 lennukiga(paris, berlin, 120).
 lunnukiga(berlin, stockholm, 80).
 lennukiga(stockholm, tallinn, 50).
+
+uhendatud(X,Y):-
+    laevaga(X,Y,_);
+    bussiga(X,Y,_);
+    lennukiga(X,Y,_).
+
+reisi(X,Y):-
+    uhendatud(X,Y).
+reisi(X,Y):-
+    uhendatud(X,Z),
+    reisi(Z,Y).
