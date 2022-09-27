@@ -33,3 +33,24 @@ reisi(Kust, Kuhu, mine(Kust, Peatus,Road)):-
     assert(labitud(Peatus)),
     reisi(Peatus, Kuhu, Road),
     retractall(labitud(_)).
+
+reisi_transpordiga(Kust, Kuhu, laevaga):-
+    laevaga(X,Y,_).
+reisi_transpordiga(Kust, Kuhu, bussiga):-
+    bussiga(X,Y,_).
+reisi_transpordiga(Kust, Kuhu, rongiga):-
+    rongiga(X,Y,_).
+reisi_transpordiga(Kust, Kuhu, lennukiga):-
+    lennukiga(X,Y,_).
+reisi(Kust, Kuhu, mine(Kust, Peatus,bussiga,mine(Peatus,Kuhu,Transport))):-
+    bussiga(Kust,Peatus),
+    reisi(Peatus, Kuhu, mine(Peatus,Kuhu,Transport)).
+reisi(Kust, Kuhu, mine(Kust, Peatus,laevaga,mine(Peatus,Kuhu,Transport))):-
+    laevaga(Kust,Peatus),
+    reisi(Peatus, Kuhu, mine(Peatus,Kuhu,Transport)).
+reisi(Kust, Kuhu, mine(Kust, Peatus,rongiga,mine(Peatus,Kuhu,Transport))):-
+    rongiga(Kust,Peatus),
+    reisi(Peatus, Kuhu, mine(Peatus,Kuhu,Transport)).
+reisi(Kust, Kuhu, mine(Kust, Peatus,lennukiga,mine(Peatus,Kuhu,Transport))):-
+    lennukiga(Kust,Peatus),
+    reisi(Peatus, Kuhu, mine(Peatus,Kuhu,Transport)).
