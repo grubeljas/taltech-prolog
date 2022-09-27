@@ -7,7 +7,7 @@ rongiga(riia, berlin, 680).
 lennukiga(tallinn, helsinki, 30).
 lennukiga(helsinki, paris, 180).
 lennukiga(paris, berlin, 120).
-lunnukiga(berlin, stockholm, 80).
+lennukiga(berlin, stockholm, 80).
 lennukiga(stockholm, tallinn, 50).
 
 uhendatud(X,Y):-
@@ -27,7 +27,7 @@ reisi(Kust, Kuhu, mine(Kust, Kuhu)):-
 reisi(Kust, Kuhu, mine(Kust, Peatus, mine(Peatus,Kuhu))):-
     uhendatud(Kust,Peatus),
     reisi(Peatus, Kuhu, mine(Peatus,Kuhu)).
-reisi(Kust, Kuhu, mine(Kust, Peatus, mine(Peatus,Peatus1,Road))):-
+reisi(Kust, Kuhu, mine(Kust, Peatus,Road)):-
     \+ labitud(Peatus),
     uhendatud(Kust,Peatus),
     assert(labitud(Peatus)),
