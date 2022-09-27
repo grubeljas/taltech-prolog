@@ -13,6 +13,7 @@ lennukiga(stockholm, tallinn, 50).
 uhendatud(X,Y):-
     laevaga(X,Y,_);
     bussiga(X,Y,_);
+    rongiga(X,Y,_);
     lennukiga(X,Y,_).
 
 reisi(X,Y):-
@@ -20,3 +21,15 @@ reisi(X,Y):-
 reisi(X,Y):-
     uhendatud(X,Z),
     reisi(Z,Y).
+
+reisi(Kust, Kuhu, mine(Kust, Kuhu)):-
+    uhendatud(Kust,Kuhu).
+reisi(Kust, Kuhu, mine(Kust, Peatus, mine(Peatus,Kuhu))):-
+    uhendatud(Kust,Peatus),
+    reisi(Peatus, Kuhu, mine(Peatus,Kuhu)).
+reisi(Kust, Kuhu, mine(Kust, Peatus, mine(Peatus,Peatus1,Road))):-
+    \+ labitud(Peatus),
+    uhendatud(Kust,Peatus),
+    assert(labitud(Peatus)),
+    reisi(Peatus, Kuhu, Road),
+    retractall(labitud(_)).
