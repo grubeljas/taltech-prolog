@@ -34,23 +34,22 @@ reisi(Kust, Kuhu, mine(Kust, Peatus,Road)):-
     reisi(Peatus, Kuhu, Road),
     retractall(labitud(_)).
 
-reisi_transpordiga(Kust, Kuhu, laevaga):-
-    laevaga(X,Y,_).
-reisi_transpordiga(Kust, Kuhu, bussiga):-
-    bussiga(X,Y,_).
-reisi_transpordiga(Kust, Kuhu, rongiga):-
-    rongiga(X,Y,_).
-reisi_transpordiga(Kust, Kuhu, lennukiga):-
-    lennukiga(X,Y,_).
-reisi(Kust, Kuhu, mine(Kust, Peatus,bussiga,mine(Peatus,Kuhu,Transport))):-
-    bussiga(Kust,Peatus),
-    reisi(Peatus, Kuhu, mine(Peatus,Kuhu,Transport)).
-reisi(Kust, Kuhu, mine(Kust, Peatus,laevaga,mine(Peatus,Kuhu,Transport))):-
-    laevaga(Kust,Peatus),
-    reisi(Peatus, Kuhu, mine(Peatus,Kuhu,Transport)).
-reisi(Kust, Kuhu, mine(Kust, Peatus,rongiga,mine(Peatus,Kuhu,Transport))):-
-    rongiga(Kust,Peatus),
-    reisi(Peatus, Kuhu, mine(Peatus,Kuhu,Transport)).
-reisi(Kust, Kuhu, mine(Kust, Peatus,lennukiga,mine(Peatus,Kuhu,Transport))):-
-    lennukiga(Kust,Peatus),
-    reisi(Peatus, Kuhu, mine(Peatus,Kuhu,Transport)).
+transport(Kust, Kuhu, laevaga):-
+    laevaga(Kust, Kuhu,_).
+transport(Kust, Kuhu, laevaga):-
+    bussiga(Kust, Kuhu,_).
+transport(Kust, Kuhu, laevaga):-
+    rongiga(Kust, Kuhu,_).
+transport(Kust, Kuhu, laevaga):-
+    lennukiga(Kust, Kuhu,_).
+reisi_transpordiga(Kust, Kuhu, mine(Kust, Kuhu, Transport)):-
+    transport(Kust, Kuhu, Transport).
+reisi_transpordiga(Kust, Kuhu, mine(Kust, Peatus, Transport, mine(Peatus,Kuhu,Transport1))):-
+    transport(Kust, Peatus, Transport),
+    reisi_transpordiga(Peatus, Kuhu, mine(Peatus, Kuhu, Transport1)).
+reisi_transpordiga(Kust, Kuhu, mine(Kust, Peatus, Transport, Road)):-
+    \+ labitud(Peatus),
+    transport(Kust, Peatus, Transport),
+    assert(labitud(Peatus)),
+    reisi_transpordiga(Peatus, Kuhu, Road),
+    retractall(labitud(_)).
