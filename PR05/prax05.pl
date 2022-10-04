@@ -37,3 +37,17 @@ odavaim_reis(Kust, Kuhu, mine(Kust, Peatus, Transport, Road), Hind):-
     odavaim_reis(Peatus, Kuhu, Road, N1),
     Hind is N + N1;
     retractall(labitud(_)).
+
+lyhim_reis(Kust, Kuhu, mine(Kust, Kuhu, Transport), N):-
+    transport(Kust, Kuhu, Transport, N, _, _).
+lyhim_reis(Kust, Kuhu, mine(Kust, Peatus, Transport, mine(Peatus,Kuhu,Transport1)), Hind):-
+    transport(Kust, Peatus, Transport, N, _, _),
+    lyhim_reis(Peatus, Kuhu, mine(Peatus, Kuhu, Transport1), N1),
+    Hind is N + N1.
+lyhim_reis(Kust, Kuhu, mine(Kust, Peatus, Transport, Road), Hind):-
+    \+ labitud(Peatus),
+    transport(Kust, Peatus, Transport, N, _, _),
+    assert(labitud(Peatus)),
+    lyhim_reis(Peatus, Kuhu, Road, N1),
+    Hind is N + N1;
+    retractall(labitud(_)).
