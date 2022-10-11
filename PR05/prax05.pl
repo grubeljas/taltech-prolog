@@ -1,6 +1,7 @@
 :- dynamic labitud/1.
 :- dynamic cheapest/1.
 
+
 laevaga(tallinn, helsinki, 120, time(12, 45, 0.0), time(14, 45, 0.0)).
 laevaga(tallinn, stockholm, 480, time(12, 45, 0.0), time(23, 45, 0.0)).
 bussiga(tallinn, riia, 300, time(12, 45, 0.0), time(15, 10, 0.0)).
