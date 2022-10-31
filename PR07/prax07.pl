@@ -23,6 +23,8 @@ inherits(X,Y):-
 inherits(X,Y):-
     is_a(X,W),
     inherits(W,Y).
+end_point(X):-
+    \+is_a(_,X).
 
 eats(X,Y):-
     inherits(Z,Y),
@@ -32,13 +34,15 @@ eats(X,Y):-
     eats(Z,Y).
 eats(X,Y):-
     inherits(Z,Y),
-    inherits(W,X),
+    inherits(W,X)
     eats(W,Z).
 
 count_terminals(X, T, C):-
     get_terms(X),
     get_list(T),
     count(T,C).
+count_terminals(X, [X], 1):-
+    end_point(X).
 
 get_terms(X):-
     inherits(Y,X),
