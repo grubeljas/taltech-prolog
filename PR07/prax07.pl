@@ -26,23 +26,23 @@ inherits(X,Y):-
 end_point(X):-
     \+is_a(_,X).
 
-eats(X,Y):-
+eating(X,Y):-
+    eats(X,Y),!.
+eating(X,Y):-
     inherits(Z,Y),
-    eats(X,Z).
-eats(X,Y):-
+    eating(X,Z),!.
+eating(X,Y):-
     inherits(Z,X),
-    eats(Z,Y).
-eats(X,Y):-
-    inherits(Z,Y),
-    inherits(W,X)
-    eats(W,Z).
+    eating(Z,Y),!.
+start_of_chain(X):-
+    \+eats(_,X).
 
+count_terminals(X, [X], 1):-
+    end_point(X).
 count_terminals(X, T, C):-
     get_terms(X),
     get_list(T),
     count(T,C).
-count_terminals(X, [X], 1):-
-    end_point(X).
 
 get_terms(X):-
     inherits(Y,X),
@@ -63,3 +63,15 @@ count([],0).
 count([_|Tail], N):-
     count(Tail, N1),
     N is N1 + 1.
+
+extinction(X, T, C):-
+    start_of_chain(X),
+    count_terminals(X, T, C).
+
+extinction(X, T, C):-
+    count_terminals(X, T1, C1),
+    eats(Y,X),
+    extinction(Y,T2,C2),
+    C is C1 + C2,
+    append(T1,T2,T).
+
