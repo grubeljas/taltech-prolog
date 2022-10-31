@@ -1,4 +1,4 @@
-:- dynamic mark/1.
+:- dynamic mark/1, max/3.
 :- discontiguous eats/2.
 
 is_a(roovloomad,elusolend).
@@ -67,7 +67,6 @@ count([_|Tail], N):-
 extinction(X, T, C):-
     start_of_chain(X),
     count_terminals(X, T, C).
-
 extinction(X, T, C):-
     count_terminals(X, T1, C1),
     eats(Y,X),
@@ -75,3 +74,17 @@ extinction(X, T, C):-
     C is C1 + C2,
     append(T1,T2,T).
 
+find_most_sensitive_species(X, C, T):-
+    assert(max(empty,[],0)),
+    rfind_most_sensitive_species(X1,C1,T1),
+    max(X,C,T),
+    retract(max(X,C,T)).
+rfind_most_sensitive_species(X, C, T):-
+    \+extinction(X, T, C),
+    assert(max(X,T,C)).
+rfind_most_sensitive_species(X, C, T):-
+    extinction(X, T, C),
+    max(X1,T1,C1),
+    ((C > C1)
+    -> (assert(max(X,T,C)), retract(X1,T1,C1))
+    ; rfind_most_sensitive_species(X2,C2,T2)).
