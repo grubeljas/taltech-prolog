@@ -1,13 +1,16 @@
 lihtlause --> nimisonafraas, tegusonafraas.
 nimisonafraas --> nimisona, omadussonafraas, nimisona.
+nimisonafraas --> omadussonafraas, nimisona, nimisona.
 nimisonafraas --> nimisona,nimisonafraas ;[].
-nimisona -->[pakapiku];[habe];[tema];[sobimatuse];[jouluvanaks]. % terminalsümbolid esinevad reeglis paremal pool ühiklistidena
+nimisonafraas --> nimisona.
+nimisona -->[pakapiku];[habe];[tema];[sobimatuse];[jouluvanaks];[kivile];[sammal]. % terminalsümbolid esinevad reeglis paremal pool ühiklistidena
 omadussonafraas --> maarsona, omadussona.
+omadussonafraas --> omadussona.
 maarsona --> [liiga].
-omadussona --> [lyhike];[must].
+sidesona --> [ei].
+omadussona --> [lyhike];[veerevale].
 tegusonafraas --> tegusona, nimisonafraas.
-tegusona --> [tingib];[pohjustab].
-% test
-phrase(lihtlause,[pakapiku,liiga,lyhike,habe,tingib,tema,sobimatuse,jouluvanaks]).
-phrase(lihtlause,[pakapiku,liiga,must,habe,tingib,tema,sobimatuse,jouluvanaks]).
-phrase(lihtlause,S). % genereerib lauseid.
+tegusonafraas --> sidesona, tegusona.
+tegusona --> [tingib];[pohjustab];[kasva].
+
+% phrase(lihtlause, [veerevale,kivile,sammal,ei,kasva]).
