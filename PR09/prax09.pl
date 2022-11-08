@@ -1,6 +1,6 @@
 lihtlause --> nimisonafraas, tegusonafraas.
-liitlause --> lihtlause, side, lihtlause.
-liitlause --> lihtlause, side, liitlause.
+liitlause --> lihtlause, sidesona, lihtlause.
+liitlause --> lihtlause, sidesona, liitlause.
 nimisonafraas --> nimisona, omadussonafraas, nimisona.
 nimisonafraas --> omadussonafraas, nimisona, nimisona.
 nimisonafraas --> nimisona,nimisonafraas ;[].
@@ -9,8 +9,7 @@ nimisona -->[pakapiku];[habe];[tema];[sobimatuse];[jouluvanaks];[kivile];[sammal
 omadussonafraas --> maarsona, omadussona.
 omadussonafraas --> omadussona.
 maarsona --> [liiga].
-sidesona --> [ei].
-side --> [","].
+sidesona --> [ei];[","].
 omadussona --> [lyhike];[veerevale].
 tegusonafraas --> tegusona, nimisonafraas.
 tegusonafraas --> sidesona, tegusona.
