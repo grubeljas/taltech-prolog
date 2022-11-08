@@ -5,7 +5,7 @@ nimisonafraas --> nimisona, omadussonafraas, nimisona.
 nimisonafraas --> omadussonafraas, nimisona, nimisona.
 nimisonafraas --> nimisona,nimisonafraas ;[].
 nimisonafraas --> nimisona.
-nimisona -->[pakapiku];[habe];[tema];[sobimatuse];[jouluvanaks];[kivile];[sammal];[uhkus];[upakile]. % terminalsümbolid esinevad reeglis paremal pool ühiklistidena
+nimisona -->[pakapiku];[habe];[tema];[sobimatuse];[jouluvanaks];[kivile];[sammal];[uhkus];[upakile];[raha];[volad]. % terminalsümbolid esinevad reeglis paremal pool ühiklistidena
 omadussonafraas --> maarsona, omadussona.
 omadussonafraas --> omadussona.
 maarsona --> [liiga].
@@ -14,7 +14,8 @@ side --> [","].
 omadussona --> [lyhike];[veerevale].
 tegusonafraas --> tegusona, nimisonafraas.
 tegusonafraas --> sidesona, tegusona.
-tegusona --> [tingib];[pohjustab];[kasva];[ajab].
+tegusonafraas --> tegusona.
+tegusona --> [tingib];[pohjustab];[kasva];[ajab];[tuleb];[laheb];[jaavad].
 
 % phrase(lihtlause, [veerevale,kivile,sammal,ei,kasva]).
 % phrase(lihtlause, [uhkus, ajab, upakile]).
