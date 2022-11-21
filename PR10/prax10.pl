@@ -1,6 +1,6 @@
 :- dynamic ruut/3.
 
-:-
+l:-
 assert(ruut(1,1,1)),
 assert(ruut(1,3,1)),
 assert(ruut(1,5,1)),
@@ -38,6 +38,7 @@ assert(ruut(8,8,2)).
 
 
 tee_kaik(X,Y,X1,Y1):-
+l,
     ruut(X,Y,Color),
     retract(X,Y,Color),
     retract(X1,Y1,0).
