@@ -1,4 +1,5 @@
-yhisosa([],List1,[]).
+yhisosa(_,[],[]).
+yhisosa([],_,[]).
 yhisosa([El|Tale], List1, [El|X]):-
     member(El,List1),
     yhisosa(Tale,List1,X).
