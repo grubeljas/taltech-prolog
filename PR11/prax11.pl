@@ -19,9 +19,9 @@ yhend(List, [El|Tale], X):-
 vahe([],_,[]).
 vahe([El|Tale],B,X):-
     member(El,B),
-    yhend(Tale,B,X).
+    vahe(Tale,B,X).
 vahe([El|Tale],B,X):-
     \+member(El,B),
     append(X1,[El],X),
-    yhend(Tale,B,X1).
+    vahe(Tale,B,X1).
 
