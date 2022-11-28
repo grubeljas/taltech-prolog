@@ -25,3 +25,12 @@ vahe([El|Tale],B,X):-
     append(X1,[El],X),
     vahe(Tale,B,X1).
 
+ristkorrutis(Symbol,[],[]).
+ristkorrutis(Symbol,[El|Tale],X):-
+    ristkorrutis(Symbol,Tale,X1),
+    append(X1,[[Symbol,El]],X).
+ristkorrutis([],_,[]).
+ristkorrutis([El|Tale],List,X):-
+    ristkorrutis(El,List,X1),
+    ristkorrutis(Tale,List,X2),
+    append(X1,X2,X).
