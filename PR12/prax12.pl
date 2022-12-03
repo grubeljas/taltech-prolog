@@ -1,3 +1,5 @@
+:- dynamic vesi/1,kalad/1.
+
 struktuur([sober(_,_,_,_,_), sober(_,_,_,_,_), sober(_,_,_,_,_), sober(_,_,_,_,_), sober(_,_,_,_,_)]).
 
 varv(sober(A,_,_,_,_),A).
@@ -6,18 +8,16 @@ jook(sober(_,_,C,_,_),C).
 sigarett(sober(_,_,_,D,_),D).
 lemmikloom(sober(_,_,_,_,F),F).
 
-first([X|_],X).
-kesk([_,_,X|_],X).
-oli_parem(A,B,[A,B,_,_,_]).
-oli_parem(A,C,[A,_,C,_,_]).
-oli_parem(A,D,[A,_,_,D,_]).
-oli_parem(A,F,[A,_,_,_,F]).
-oli_parem(B,C,[_,B,C,_,_]).
-oli_parem(B,D,[_,B,_,D,_]).
-oli_parem(B,F,[_,B,_,_,F]).
-oli_parem(C,D,[_,_,C,D,_]).
-oli_parem(C,F,[_,_,C,_,F]).
-oli_parem(D,F,[_,_,_,D,F]).
+first(X,[X|_]).
+kesk(X,[_,_,X|_]).
+korval(A,B,[A,B,_,_,_]).
+korval(B,C,[_,B,C,_,_]).
+korval(C,D,[_,_,C,D,_]).
+korval(D,F,[_,_,_,D,F]).
+korval(B,A,[A,B,_,_,_]).
+korval(C,B,[_,B,C,_,_]).
+korval(D,C,[_,_,C,D,_]).
+korval(F,D,[_,_,_,D,F]).
 
 moistatus :-
   struktuur(Sobrad),
@@ -33,7 +33,7 @@ moistatus :-
   member(S4, Sobrad),
     kodakondsus(S4, ukrainlane),
     jook(S4, tee),
-  oli_parem(S51, S52, Sobrad),
+  korval(S51, S52, Sobrad),
     varv(S51, valge),
     varv(S52, roheline),
   member(S6, Sobrad),
@@ -43,4 +43,37 @@ moistatus :-
     sigarett(S7, kool),
     varv(S7, kollane),
   member(S8, Sobrad),
-    sigarett(S7, winston).
+    sigarett(S7, winston),
+  kesk(S8,Sobrad),
+    jook(S8,piim),
+  first(S9,Sobrad),
+    kodakondsus(S9,norralane),
+  korval(S101,S102,Sobrad),
+    sigarett(S101,chesterfield),
+    lemmikloom(S102,rebane),
+  korval(S111,S112,Sobrad),
+    sigarett(S111,kool),
+    lemmikloom(S112,hobune),
+  member(S12,Sobrad),
+    sigarett(S12,luckystrike),
+    jook(S12,mahl),
+  member(S13,Sobrad),
+    kodakondsus(S13,jaapanlane),
+    sigarett(S13,kent),
+  korval(S141,S142,Sobrad),
+    kodakondsus(S141,norralane),
+    varv(S142,sinine),
+  member(S15,Sobrad),
+    jook(S15,vesi),
+    append(vesi(S15)),
+  member(S16,Sobrad),
+    lemmikloom(S16,kalad),
+    append(kalad(S16)).
+
+joob_vett(Kes):-
+    moistatus,
+    vesi(Kes).
+
+lemmikloomaks_kalad(Kellel):-
+    moistatus,
+    kalad(Kellel).
