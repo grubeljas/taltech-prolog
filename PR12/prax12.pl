@@ -19,7 +19,7 @@ korval(C,B,[_,B,C,_,_]).
 korval(D,C,[_,_,C,D,_]).
 korval(F,D,[_,_,_,D,F]).
 
-moistatus :-
+moistatus():-
   struktuur(Sobrad),
   member(S1, Sobrad),
     kodakondsus(S1, inglane),
@@ -42,8 +42,6 @@ moistatus :-
   member(S7, Sobrad),
     sigarett(S7, kool),
     varv(S7, kollane),
-  member(S8, Sobrad),
-    sigarett(S7, winston),
   kesk(S8,Sobrad),
     jook(S8,piim),
   first(S9,Sobrad),
@@ -65,10 +63,12 @@ moistatus :-
     varv(S142,sinine),
   member(S15,Sobrad),
     jook(S15,vesi),
-    append(vesi(S15)),
+    kodakondsus(S15,Koda1),
+    append(vesi(Koda1)),
   member(S16,Sobrad),
     lemmikloom(S16,kalad),
-    append(kalad(S16)).
+    kodakondsus(S16,Koda2),
+    append(kalad(Koda2)).
 
 joob_vett(Kes):-
     moistatus,
