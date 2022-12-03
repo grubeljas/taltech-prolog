@@ -1,5 +1,3 @@
-:- dynamic vesi/1,kalad/1.
-
 struktuur([sober(_,_,_,_,_), sober(_,_,_,_,_), sober(_,_,_,_,_), sober(_,_,_,_,_), sober(_,_,_,_,_)]).
 
 varv(sober(A,_,_,_,_),A).
@@ -19,7 +17,7 @@ korval(C,B,[_,B,C,_,_]).
 korval(D,C,[_,_,C,D,_]).
 korval(F,D,[_,_,_,D,F]).
 
-moistatus():-
+moistatus(Sobrad):-
   struktuur(Sobrad),
   member(S1, Sobrad),
     kodakondsus(S1, inglane),
@@ -63,17 +61,17 @@ moistatus():-
     varv(S142,sinine),
   member(S15,Sobrad),
     jook(S15,vesi),
-    kodakondsus(S15,Koda1),
-    append(vesi(Koda1)),
   member(S16,Sobrad),
-    lemmikloom(S16,kalad),
-    kodakondsus(S16,Koda2),
-    append(kalad(Koda2)).
+    lemmikloom(S16,kalad).
 
 joob_vett(Kes):-
-    moistatus,
-    vesi(Kes).
+    moistatus(Sobrad),
+    member(S,Sobrad),
+    jook(S,vesi),
+    kodakondsus(S,Kes).
 
 lemmikloomaks_kalad(Kellel):-
-    moistatus,
-    kalad(Kellel).
+    moistatus(Sobrad),
+    member(S,Sobrad),
+    lemmikloom(S,kalad),
+    kodakondsus(S,Kellel).
