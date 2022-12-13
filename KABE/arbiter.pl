@@ -1,4 +1,5 @@
 :- module(arbiter,[t/1, ruut/3]).
+:- use_module(swi('swipl-win.rc')).
 :- use_module(library(pce)).
 :- require([ between/3, call/2, atomic_list_concat/2, term_variables/2]).
 
@@ -8,8 +9,8 @@
 %valged(human)  % valgetega mängib inimine
 %mustad(k1)     % mustadega mängib programm k1
 
-valged(human).		% Valged
-mustad(human).		% Mustad
+valged(blind).		% Valged
+mustad(blind).		% Mustad
 
 % Seejärel laadida mällu see programm (graphicArbiter) ja võistlevad kabeprogrammid.
 %                                                         _________________________
