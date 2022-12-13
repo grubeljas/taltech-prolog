@@ -35,34 +35,35 @@ same_diagonal(X,Y,X1,Y1,N):-
 free_diagonal(X,Y,X1,Y1,1):-
     same_diagonal(X,Y,X1,Y1,1),!.
 free_diagonal(X,Y,X1,Y1,N):-
-    X2 is X + 1,
+    X2 is X - 1,
     Y2 is Y + 1,
-    ruut(X1,Y1,0),
-    same_diagonal(X,Y,X1,Y1,1),
+    ruut(X2,Y2,0),
+    same_diagonal(X,Y,X2,Y2,1),
     same_diagonal(X2,Y2,X1,Y1,N1),
     N1 < N,
     free_diagonal(X2,Y2,X1,Y1,N1).
 free_diagonal(X,Y,X1,Y1,N):-
     X2 is X + 1,
     Y2 is Y - 1,
-    ruut(X1,Y1,0),
-    same_diagonal(X,Y,X1,Y1,1),
+    ruut(X2,Y2,0),
+    same_diagonal(X,Y,X2,Y2,1),
     same_diagonal(X2,Y2,X1,Y1,N1),
     N1 < N,
     free_diagonal(X2,Y2,X1,Y1,N1).
 free_diagonal(X,Y,X1,Y1,N):-
-    X2 is X - 1,
+    X2 is X + 1,
     Y2 is Y + 1,
-    ruut(X1,Y1,0),
-    same_diagonal(X,Y,X1,Y1,1),
+    write(X2),write(Y2),
+    ruut(X2,Y2,0),
+    same_diagonal(X,Y,X2,Y2,1),
     same_diagonal(X2,Y2,X1,Y1,N1),
     N1 < N,
     free_diagonal(X2,Y2,X1,Y1,N1).
 free_diagonal(X,Y,X1,Y1,N):-
     X2 is X - 1,
     Y2 is Y - 1,
-    ruut(X1,Y1,0),
-    same_diagonal(X,Y,X1,Y1,1),
+    ruut(X2,Y2,0),
+    same_diagonal(X,Y,X2,Y2,1),
     same_diagonal(X2,Y2,X1,Y1,N1),
     N1 < N,
     free_diagonal(X2,Y2,X1,Y1,N1).
@@ -90,13 +91,16 @@ if_take_possible(Color,X,Y,X1,Y1,X2,Y2):-
     enemy(Color,Color1),
     kabe(Color1,EnemyKabe),
     (ruut(X1,Y1,Color1);ruut(X1,Y1,EnemyKabe)),
+    write(X1),write(Y1),
     same_diagonal(X,Y,X1,Y1,N),
-    write(N),
+    free_diagonal(X,Y,X1,Y1,N),
     N1 is N + 1,
-    write(N1),
     ruut(X2,Y2,0),
     write(X2),write(Y2),
-    same_diagonal(X,Y,X2,Y2,N1),!.
+    same_diagonal(X,Y,X2,Y2,N1),
+    same_diagonal(X1,Y1,X2,Y2,N3),
+    N3 = 1,
+    !.
 if_take_possible(Color,X,Y,X1,Y1,X2,Y2):-
     enemy(Color,Color1),
     kabe(Color1,EnemyKabe),
@@ -196,3 +200,13 @@ make_step(X, Y, X1, Y1) :-
     retractall(ruut(X1, Y1, 0)),
     assert(ruut(X1, Y1, A)),
     assert(ruut(X, Y, 0)).
+
+ruut(8,4,10).
+ruut(8,8,10).
+ruut(6,6,2).
+ruut(1,1,1).
+ruut(2,2,0).
+ruut(7,5,0).
+ruut(7,7,0).
+ruut(5,5,0).
+ruut(5,7,0).
