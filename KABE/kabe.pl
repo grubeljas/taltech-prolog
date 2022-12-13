@@ -200,13 +200,3 @@ make_step(X, Y, X1, Y1) :-
     retractall(ruut(X1, Y1, 0)),
     assert(ruut(X1, Y1, A)),
     assert(ruut(X, Y, 0)).
-
-ruut(8,4,10).
-ruut(8,8,10).
-ruut(6,6,2).
-ruut(1,1,1).
-ruut(2,2,0).
-ruut(7,5,0).
-ruut(7,7,0).
-ruut(5,5,0).
-ruut(5,7,0).
